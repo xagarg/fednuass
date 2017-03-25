@@ -29,6 +29,26 @@ public class Helper {
         System.out.println("\t\t\t3. Display Cost Under Plan B");
         System.out.println("\t\t\t4. Clear Usage Details");
         System.out.println("\t\t\t5. Exit System");
+        int option =input.nextInt();
+        while (option!=5){
+            if(option == 1) {
+                Helper.displayMenuForOptionOne();
+                int op = Helper.input.nextInt();
+                Helper.optionOneForOne(op);
+            } else if (option == 2) {
+
+            } else if (option == 3) {
+
+            } else if (option == 4) {
+
+            } else if (option == 5) {
+                System.exit(0);
+            } else {
+
+            }
+            displayMenu();
+        }
+
     }
     public static void displayMenuForOptionOne(){
         System.out.println("\t\t\tENTER USAGE DETAILS MENU");
@@ -38,8 +58,8 @@ public class Helper {
         System.out.println("\t\t\t3. Data Usage");
         System.out.println("\t\t\t4. Return to main menu");
     }
-    public static void optionOneForOne(int option){
 
+    public static void optionOneForOne(int option){
         if (option==1){
             System.out.println("Enter call length in seconds: ");
             details.setPhoneCallLength(input.nextFloat());
@@ -50,7 +70,12 @@ public class Helper {
             System.out.println("Enter the amount of data in MB:");
             details.setDataUsage(input.nextInt());
         }
+    }
 
+    public static void planA(){
+        System.out.println("Cost under Plan A");
+        displayLine();
+        System.out.println("Number of calls ="+ details.getPhoneCallLength());
     }
 }
 
