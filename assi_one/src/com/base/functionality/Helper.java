@@ -1,9 +1,14 @@
 package com.base.functionality;
 
+import java.util.Scanner;
+
 /**
  * Created by bbk on 3/24/17.
  */
 public class Helper {
+    static Scanner input= new Scanner(System.in);
+    static Details details= new Details();
+    static int sms=0;
     public static void displayLine(){
         for (int i=0;i<76;i++){
             System.out.print("=");
@@ -25,7 +30,28 @@ public class Helper {
         System.out.println("\t\t\t4. Clear Usage Details");
         System.out.println("\t\t\t5. Exit System");
     }
+    public static void displayMenuForOptionOne(){
+        System.out.println("\t\t\tENTER USAGE DETAILS MENU");
+        System.out.println("\t\t\tPlease select an option from the menu:");
+        System.out.println("\t\t\t1. Phone Call");
+        System.out.println("\t\t\t2. SMS");
+        System.out.println("\t\t\t3. Data Usage");
+        System.out.println("\t\t\t4. Return to main menu");
+    }
+    public static void optionOneForOne(int option){
 
+        if (option==1){
+            System.out.println("Enter call length in seconds: ");
+            details.setPhoneCallLength(input.nextFloat());
+        }else if (option==2){
+            sms=sms+1;
+            System.out.println("Total number of SMS so far = "+sms);
+        }else if (option==3){
+            System.out.println("Enter the amount of data in MB:");
+            details.setDataUsage(input.nextInt());
+        }
+
+    }
 }
 
 
