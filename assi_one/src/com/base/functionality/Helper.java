@@ -45,6 +45,7 @@ public class Helper {
             } else if (option == 4) {
                 clearUsage();
             } else if (option == 5) {
+                exit();
                 System.exit(0);
             } else {
                 System.out.println("Value must be between 1 and 5. Please try again:");
@@ -54,7 +55,7 @@ public class Helper {
         }
 
     }
-    public void displayMenuForOptionOne(){
+    private void displayMenuForOptionOne(){
         System.out.println("\t\t\tENTER USAGE DETAILS MENU");
         System.out.println("\t\t\tPlease select an option from the menu:");
         System.out.println("\t\t\t1. Phone Call");
@@ -63,19 +64,33 @@ public class Helper {
         System.out.println("\t\t\t4. Return to main menu");
     }
 
-    public void optionOneForOne(int option){
+    private void optionOneForOne(int option){
         if (option==1){
             System.out.println("\t\t\tEnter call length in seconds: ");
-            callLength=callLength+input.nextInt();
+            int tempCallLength=input.nextInt();
+            while (tempCallLength<1){
+                System.out.println("Please enter positive value:");
+                tempCallLength=input.nextInt();
+            }
+            callLength+=tempCallLength;
             call++;
+            displayLine();
         }else if (option==2){
             sms=sms+1;
             System.out.println("\t\t\tTotal number of SMS so far = "+sms);
+            displayLine();
         }else if (option==3){
             System.out.println("\t\t\tEnter the amount of data in MB:");
-            dataUsage=dataUsage+input.nextInt();
+            int tempDataUsage=input.nextInt();
+            while (tempDataUsage<1){
+                System.out.println("Please enter positive value:");
+                tempDataUsage=input.nextInt();
+            }
+            dataUsage+=tempDataUsage;
+            displayLine();
         }else if (option==4){
             displayMenu();
+            displayLine();
         }else{
             System.out.println("\t\t\tValue must be between 1 and 4. Please try again:");
             option=input.nextInt();
@@ -86,39 +101,39 @@ public class Helper {
         optionOneForOne(option);
     }
 
-    public void planA(){
+    private void planA(){
         System.out.println("\t\t\tCost under Plan A");
         displayLine();
         System.out.print("\t\t\tNumber of calls ="+ call);
         System.out.println("\t\t\t\t\t\t$"+call*0.23);
         System.out.print("\t\t\tTotal call time (secs) ="+ callLength);
-        System.out.println("\t\t\t$"+callLength*0.02);
+        System.out.println("\t\t\t\t$"+callLength*0.02);
         System.out.print("\t\t\tNumber of SMS ="+sms);
         System.out.println("\t\t\t\t\t\t$"+sms*0.12);
         System.out.print("\t\t\tData usage (MB) ="+dataUsage);
         System.out.println("\t\t\t\t\t\t$"+dataUsage*0.03);
         displayLine();
         float total= (float)(call*0.23+callLength*0.02+sms*0.12+dataUsage*0.03);
-        System.out.println("\t\t\tTOTAL COST "+"\t\t\t"+total);
+        System.out.println("\t\t\tTOTAL COST "+"\t\t\t\t\t\t\t\t$"+total);
         displayLine();
     }
-    public void planB(){
+    private void planB(){
         System.out.println("\t\t\tCost under Plan B");
         displayLine();
         System.out.print("\t\t\tNumber of calls ="+ call);
         System.out.println("\t\t\t\t\t\t$"+call*0.17);
         System.out.print("\t\t\tTotal call time (secs) ="+ callLength);
-        System.out.println("\t\t\t$"+callLength*0.03);
+        System.out.println("\t\t\t\t$"+callLength*0.03);
         System.out.print("\t\t\tNumber of SMS ="+sms);
         System.out.println("\t\t\t\t\t\t$"+sms*0.15);
         System.out.print("\t\t\tData usage (MB) ="+dataUsage);
         System.out.println("\t\t\t\t\t\t$"+dataUsage*0.02);
         displayLine();
         float total= (float) (call*0.17+callLength*0.03+sms*0.15+dataUsage*0.02);
-        System.out.println("\t\t\tTOTAL COST "+"\t\t\t\t\t\t"+total);
+        System.out.println("\t\t\tTOTAL COST "+"\t\t\t\t\t\t\t\t$"+total);
         displayLine();
     }
-    public void clearUsage(){
+    private void clearUsage(){
         sms=0;
         call=0;
         callLength=0;
@@ -127,6 +142,12 @@ public class Helper {
         System.out.println("\t\t\tALL USAGE DETAILS HAVE BEEN RESET TO 0");
         displayLine();
     }
+    private void exit(){
+        displayLine();
+        System.out.println("Thank you for using this software. We hope you found it useful.");
+        displayLine();
+    }
+
     private void displayAsDollarsAndCents(int cents){
         System.out.print("$" + (cents/100) + "." + (cents%100));
     }
